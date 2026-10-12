@@ -1,0 +1,50 @@
+.wa-button {
+  position: fixed;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 40;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  background: var(--charcoal);
+  color: var(--ivory);
+  /* hairline ring keeps the button legible over the dark sections too */
+  box-shadow:
+    0 0 0 1px rgba(197, 170, 124, 0.55),
+    0 10px 30px -12px rgba(36, 37, 34, 0.55);
+  transition: background-color 0.4s var(--ease);
+}
+
+.wa-button:hover {
+  background: var(--olive);
+}
+
+.wa-button:focus-visible {
+  outline: 2px solid var(--champagne);
+  outline-offset: 3px;
+}
+
+.wa-button__label {
+  display: none;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+@media (min-width: 1024px) {
+  .wa-button {
+    width: auto;
+    padding: 0 1.4rem 0 1.15rem;
+    right: 2rem;
+    bottom: 2rem;
+  }
+
+  .wa-button__label {
+    display: inline;
+  }
+}

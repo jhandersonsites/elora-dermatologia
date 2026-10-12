@@ -1,0 +1,477 @@
+/* ============================================================
+   ÉLORA — design tokens and base styles
+   ============================================================ */
+
+:root {
+  /* Palette */
+  --ivory: #f7f4ee;
+  --cream: #eae3d8;
+  --charcoal: #242522;
+  --olive: #777b68;
+  --taupe: #b4a697;
+  --champagne: #c5aa7c;
+
+  /* Derived tones (contrast-checked) */
+  --ink: var(--charcoal);
+  --ink-soft: #55584b; /* ~6.4:1 on ivory — body copy */
+  --ink-faint: #5f6253; /* ≥4.9:1 on ivory and cream — captions */
+  --line: rgba(36, 37, 34, 0.14);
+  --line-strong: rgba(36, 37, 34, 0.32);
+  --on-dark: #f2eee6;
+  --on-dark-soft: rgba(242, 238, 230, 0.74);
+  --line-dark: rgba(242, 238, 230, 0.16);
+
+  /* Typography */
+  --font-serif: 'Cormorant Garamond', 'Times New Roman', serif;
+  --font-sans: 'Manrope Variable', 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --fs-display: clamp(2.9rem, 1.6rem + 4.6vw, 6.6rem);
+  --fs-h2: clamp(2.3rem, 1.5rem + 3vw, 4.6rem);
+  --fs-h3: clamp(1.6rem, 1.3rem + 1vw, 2.2rem);
+  --fs-lead: clamp(1.08rem, 1rem + 0.3vw, 1.25rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-eyebrow: 0.72rem;
+
+  /* Layout */
+  --gutter: clamp(1rem, 4vw, 4rem);
+  --max: 1440px;
+  --header-h: 64px;
+  --section-y: clamp(5.5rem, 4rem + 8vw, 11rem);
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  color-scheme: light;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --header-h: 88px;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--ivory);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: 1.7;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+body.is-locked {
+  overflow: hidden;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+section[id],
+[id='agendar'] {
+  scroll-margin-top: var(--header-h);
+}
+
+::selection {
+  background: var(--champagne);
+  color: var(--charcoal);
+}
+
+:focus-visible {
+  outline: 2px solid var(--charcoal);
+  outline-offset: 3px;
+}
+
+.on-dark :focus-visible {
+  outline-color: var(--champagne);
+}
+
+/* ---------- Utilities ---------- */
+
+.container {
+  width: 100%;
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.75rem 1.1rem;
+  background: var(--charcoal);
+  color: var(--ivory);
+  font-size: var(--fs-small);
+  transform: translateY(-160%);
+  transition: transform 0.3s var(--ease);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+/* ---------- Type primitives ---------- */
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  font-size: var(--fs-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.eyebrow::before {
+  content: '';
+  width: 2.25rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+.eyebrow--plain::before {
+  display: none;
+}
+
+.on-dark .eyebrow {
+  color: var(--champagne);
+}
+
+.display,
+.h2,
+.h3 {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  letter-spacing: -0.015em;
+}
+
+.display {
+  font-size: var(--fs-display);
+  line-height: 0.98;
+}
+
+.h2 {
+  font-size: var(--fs-h2);
+  line-height: 1.02;
+}
+
+.h3 {
+  font-size: var(--fs-h3);
+  line-height: 1.1;
+  font-weight: 400;
+}
+
+.display em,
+.h2 em,
+.h3 em {
+  font-style: italic;
+  color: var(--olive);
+}
+
+.on-dark .h2 em,
+.on-dark .display em {
+  color: var(--champagne);
+}
+
+.lead {
+  font-size: var(--fs-lead);
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
+.body-copy {
+  color: var(--ink-soft);
+  max-width: 34rem;
+}
+
+.on-dark .lead,
+.on-dark .body-copy {
+  color: var(--on-dark-soft);
+}
+
+.index-number {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--ink-faint);
+}
+
+.caption {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+}
+
+/* Line-by-line headline mask */
+.line-mask {
+  display: block;
+  overflow: hidden;
+  /* room for descenders and italic overhang */
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.line-mask__inner {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  min-height: 52px;
+  padding: 0.95rem 1.75rem;
+  border: 1px solid transparent;
+  border-radius: 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    color 0.5s var(--ease),
+    border-color 0.5s var(--ease),
+    background-color 0.5s var(--ease);
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.55s var(--ease);
+}
+
+.btn:hover::before,
+.btn:focus-visible::before {
+  transform: scaleY(1);
+}
+
+.btn svg {
+  flex: none;
+  transition: transform 0.5s var(--ease);
+}
+
+.btn:hover svg {
+  transform: translateX(3px);
+}
+
+.btn--primary {
+  background: var(--charcoal);
+  color: var(--ivory);
+}
+
+.btn--primary::before {
+  background: var(--olive);
+}
+
+.btn--outline {
+  border-color: var(--line-strong);
+  color: var(--ink);
+}
+
+.btn--outline::before {
+  background: var(--charcoal);
+}
+
+.btn--outline:hover,
+.btn--outline:focus-visible {
+  color: var(--ivory);
+  border-color: var(--charcoal);
+}
+
+.btn--light {
+  background: var(--ivory);
+  color: var(--charcoal);
+}
+
+.btn--light::before {
+  background: var(--champagne);
+}
+
+.btn--ghost-light {
+  border-color: rgba(242, 238, 230, 0.4);
+  color: var(--on-dark);
+}
+
+.btn--ghost-light::before {
+  background: var(--ivory);
+}
+
+.btn--ghost-light:hover,
+.btn--ghost-light:focus-visible {
+  color: var(--charcoal);
+}
+
+/* Understated text link with a drawn underline */
+.text-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding-block: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.text-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: currentColor;
+  transform-origin: right;
+  transition: transform 0.6s var(--ease);
+}
+
+.text-link:hover::after {
+  transform: scaleX(0);
+}
+
+.text-link svg {
+  transition: transform 0.5s var(--ease);
+}
+
+.text-link:hover svg {
+  transform: translateX(4px);
+}
+
+/* ---------- Scroll-linked layers ----------
+   Elements whose transform/opacity is rewritten on every scroll frame get their
+   own compositor layer. Without this, each frame repainted the whole document
+   and forced the photos underneath to be re-rasterised and re-decoded. */
+.scroll-layer,
+.image-reveal img,
+.hero__media-inner,
+.hero__copy,
+.story__film-inner,
+.treatments__bar span,
+.approach__rail span {
+  will-change: transform;
+}
+
+/* Statement words fade per scroll frame: composited opacity, no text repaint. */
+.scroll-word {
+  display: inline-block;
+  will-change: opacity;
+}
+
+/* ---------- Media frames ---------- */
+
+.image-reveal {
+  position: relative;
+  overflow: hidden;
+  background: var(--cream);
+}
+
+.image-reveal img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.section-header {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

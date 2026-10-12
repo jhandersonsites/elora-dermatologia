@@ -1,0 +1,147 @@
+.story {
+  position: relative;
+  padding-block: var(--section-y);
+  background: var(--cream);
+  color: var(--on-dark);
+  overflow: clip;
+}
+
+/* Charcoal "lights down" layer; its opacity follows the scroll. */
+.story__shade {
+  position: absolute;
+  inset: 0;
+  background: var(--charcoal);
+  will-change: opacity;
+  pointer-events: none;
+}
+
+.story__grid {
+  position: relative;
+}
+
+.story .index-number {
+  color: var(--champagne);
+}
+
+.story .caption {
+  color: var(--on-dark-soft);
+}
+
+.story__grid {
+  display: grid;
+  gap: 3rem;
+}
+
+.story__head {
+  display: grid;
+  gap: 2rem;
+}
+
+.story__title {
+  font-size: clamp(2.6rem, 1.4rem + 5vw, 7rem);
+  line-height: 0.98;
+}
+
+.story__film {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #1a1b19;
+}
+
+.story__film-inner {
+  position: absolute;
+  inset: -8% 0;
+}
+
+.story__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 55% 40%;
+}
+
+.story__detail {
+  width: 62%;
+  margin-left: auto;
+  margin-top: -6rem;
+  position: relative;
+  z-index: 1;
+}
+
+.story__detail-image {
+  aspect-ratio: 1 / 1;
+  background: #1a1b19;
+}
+
+.story__caption {
+  margin-top: 0.85rem;
+}
+
+.story__values {
+  display: grid;
+  border-top: 1px solid var(--line-dark);
+}
+
+.story__values li {
+  display: flex;
+  align-items: baseline;
+  gap: 1.25rem;
+  padding-block: 1.4rem;
+  border-bottom: 1px solid var(--line-dark);
+}
+
+.story__values p {
+  font-family: var(--font-serif);
+  font-size: clamp(1.35rem, 1.1rem + 0.8vw, 1.9rem);
+  line-height: 1.25;
+}
+
+@media (min-width: 768px) {
+  .story__grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 2rem;
+    row-gap: 4rem;
+  }
+
+  .story__head {
+    grid-column: 1 / span 10;
+  }
+
+  .story__film {
+    grid-column: 1 / span 8;
+    aspect-ratio: 16 / 11;
+  }
+
+  .story__detail {
+    grid-column: 9 / span 4;
+    width: auto;
+    margin: 0;
+    align-self: end;
+  }
+
+  .story__detail-image {
+    aspect-ratio: 4 / 5;
+  }
+
+  .story__text {
+    grid-column: 2 / span 5;
+    padding-top: 2rem;
+  }
+
+  .story__values {
+    grid-column: 8 / span 5;
+    padding-top: 4rem;
+    border-top: 0;
+  }
+
+  .story__values li:first-child {
+    border-top: 1px solid var(--line-dark);
+  }
+}
+
+@media (min-width: 1280px) {
+  .story__film {
+    margin-left: calc(-1 * max(var(--gutter), (100vw - var(--max)) / 2 + var(--gutter)));
+  }
+}

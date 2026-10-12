@@ -1,0 +1,242 @@
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-top: var(--header-h);
+  background: var(--ivory);
+  overflow: clip;
+}
+
+.hero__media {
+  position: relative;
+  height: min(58svh, 560px);
+  min-height: 300px;
+  overflow: hidden;
+  background: var(--cream);
+}
+
+.hero__media-inner {
+  position: absolute;
+  inset: 0;
+  transform-origin: center top;
+}
+
+.hero__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 48% 40%;
+}
+
+.hero__media-meta {
+  position: absolute;
+  inset: auto 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2.5rem 1rem 1rem;
+  background: linear-gradient(to top, rgba(36, 37, 34, 0.42), rgba(36, 37, 34, 0));
+  color: var(--on-dark);
+  pointer-events: none;
+}
+
+.hero__media-caption {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+
+.hero__toggle {
+  pointer-events: auto;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(242, 238, 230, 0.5);
+  border-radius: 50%;
+  background: rgba(36, 37, 34, 0.18);
+  color: var(--on-dark);
+  transition:
+    background-color 0.4s var(--ease),
+    color 0.4s var(--ease);
+}
+
+.hero__toggle:hover {
+  background: var(--ivory);
+  color: var(--charcoal);
+}
+
+.hero__copy {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 1.5rem;
+  padding: 2.25rem var(--gutter) 3.5rem;
+}
+
+.hero__title {
+  font-size: clamp(2.85rem, 12.5vw, 4.4rem);
+}
+
+.hero__lead {
+  max-width: 30rem;
+}
+
+.hero__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.hero__actions .btn {
+  width: 100%;
+}
+
+.hero__scroll {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .hero__actions {
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .hero__actions .btn {
+    width: auto;
+  }
+}
+
+/* ---------- Desktop: asymmetric split composition ---------- */
+
+@media (min-width: 1024px) {
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 5.3fr) minmax(0, 6.7fr);
+    min-height: max(100svh, 700px);
+  }
+
+  .hero__media {
+    grid-column: 2;
+    grid-row: 1;
+    height: auto;
+    min-height: 0;
+  }
+
+  .hero__media-meta {
+    padding: 3rem 2rem 1.75rem;
+  }
+
+  .hero__copy {
+    grid-column: 1;
+    grid-row: 1;
+    align-content: center;
+    gap: 2rem;
+    padding: 4rem clamp(2rem, 4vw, 5rem) 8rem max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter)));
+  }
+
+  .hero__title {
+    font-size: clamp(3.6rem, 5.4vw, 6.4rem);
+  }
+
+  .hero__scroll {
+    position: absolute;
+    left: max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter)));
+    bottom: 2.25rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .hero__scroll-line {
+    position: relative;
+    width: 1px;
+    height: 3rem;
+    background: var(--line);
+    overflow: hidden;
+  }
+
+  .hero__scroll-line::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--charcoal);
+    transform: translateY(-100%);
+    animation: scroll-cue 2.6s var(--ease) infinite;
+  }
+}
+
+/* ---------- CSS intro (runs before JS; React resumes it via --intro-offset) ---------- */
+
+.hero-intro .hero__media {
+  animation: hero-unveil 1.6s var(--ease) both;
+  animation-delay: calc(100ms + var(--intro-offset, 0ms));
+}
+
+.hero-intro .hero-rise {
+  animation: hero-rise 1.15s var(--ease) both;
+  animation-delay: calc(300ms + var(--i, 0) * 90ms + var(--intro-offset, 0ms));
+}
+
+.hero-intro .hero-fade {
+  animation: hero-fade 1s var(--ease) both;
+  animation-delay: calc(200ms + var(--i, 0) * 110ms + var(--intro-offset, 0ms));
+}
+
+@keyframes hero-unveil {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes hero-rise {
+  from {
+    transform: translateY(108%);
+  }
+}
+
+@keyframes hero-fade {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-intro .hero__media,
+  .hero-intro .hero-rise,
+  .hero-intro .hero-fade {
+    animation: none;
+  }
+}
+
+@keyframes scroll-cue {
+  0% {
+    transform: translateY(-100%);
+  }
+  55% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__scroll-line::after {
+    animation: none;
+    transform: none;
+  }
+}

@@ -1,0 +1,3 @@
+# Demonstration project with fictional data — not for indexing.
+User-agent: *
+Disallow: /

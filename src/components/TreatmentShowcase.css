@@ -1,0 +1,175 @@
+.treatments {
+  position: relative;
+  background: var(--cream);
+}
+
+.treatments__intro {
+  display: grid;
+  gap: 1.5rem;
+  align-content: center;
+}
+
+.treatment-card {
+  display: grid;
+  align-content: start;
+  gap: 1.5rem;
+}
+
+.treatment-card__media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--taupe);
+}
+
+.treatment-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+  transition:
+    transform 1.4s var(--ease),
+    filter 1.4s var(--ease);
+}
+
+.treatment-card:hover .treatment-card__media img,
+.treatment-card:focus-within .treatment-card__media img {
+  transform: scale(1.07);
+}
+
+.treatment-card__body {
+  display: grid;
+  gap: 0.75rem;
+  justify-items: start;
+}
+
+.treatment-card__body p {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.treatment-card__body .text-link {
+  margin-top: 0.5rem;
+}
+
+.treatment-card--closing {
+  align-content: center;
+  gap: 2rem;
+  padding: 2.5rem 2rem;
+  border: 1px solid var(--line-strong);
+  background: var(--ivory);
+}
+
+/* ---------- Swipe (mobile / tablet / reduced motion) ---------- */
+
+.treatments--swipe {
+  padding-block: var(--section-y);
+}
+
+.treatments__scroller {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min(78vw, 380px);
+  gap: 1.25rem;
+  margin-top: 3rem;
+  padding-inline: var(--gutter);
+  padding-bottom: 1rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--gutter);
+  scrollbar-width: thin;
+  scrollbar-color: var(--taupe) transparent;
+}
+
+.treatments__scroller > li {
+  scroll-snap-align: start;
+}
+
+.treatments__hint {
+  margin-top: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .treatments__hint {
+    display: none;
+  }
+}
+
+/* ---------- Pinned horizontal (desktop) ---------- */
+
+.treatments__sticky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: var(--header-h);
+  /* clip (not hidden): not a scroll container, so focus can't scroll it sideways */
+  overflow: clip;
+}
+
+.treatments__viewport {
+  width: 100%;
+  overflow: clip;
+}
+
+.treatments__track {
+  display: flex;
+  align-items: center;
+  gap: clamp(3rem, 6vw, 7rem);
+  width: max-content;
+  padding-inline: max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter)));
+  will-change: transform;
+}
+
+.treatments--pinned .treatments__intro {
+  width: min(34vw, 30rem);
+}
+
+.treatments--pinned .treatments__list {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(1.5rem, 2.6vw, 2.75rem);
+}
+
+.treatments--pinned .treatment-card {
+  width: min(25vw, calc((100svh - 400px) * 0.8), 400px);
+  min-width: 260px;
+}
+
+.treatments--pinned .treatment-card:nth-child(even) {
+  margin-top: clamp(1.5rem, 5vh, 4rem);
+}
+
+.treatments--pinned .treatment-card--closing {
+  align-self: center;
+  margin-top: 0;
+}
+
+.treatments__progress {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: clamp(1.5rem, 4vh, 3rem);
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--ink-faint);
+}
+
+.treatments__bar {
+  position: relative;
+  flex: 1;
+  max-width: 18rem;
+  height: 1px;
+  background: var(--line);
+}
+
+.treatments__bar span {
+  position: absolute;
+  inset: 0;
+  background: var(--charcoal);
+  transform-origin: left;
+}

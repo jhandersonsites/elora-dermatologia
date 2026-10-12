@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Dermatologia em Vitória, ES | ÉLORA Dermatologia — Demonstração</title>
+    <meta
+      name="description"
+      content="Dermatologia clínica e estética em Vitória, ES, com avaliação individual e planejamento de cuidados. Projeto demonstrativo: marca e dados fictícios."
+    />
+    <!-- Fictional demo: keep it out of search engines. Remove for a real client. -->
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#f7f4ee" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:title" content="ÉLORA Dermatologia — Ciência para a sua pele. Arte em cada detalhe." />
+    <meta
+      property="og:description"
+      content="Dermatologia contemporânea em Vitória, ES. Projeto demonstrativo criado por PontoWeb — marca, profissional e informações fictícias."
+    />
+    <meta property="og:image" content="/media/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <div id="root">
+      <!--
+        STATIC FIRST PAINT — header + hero, rendered before any JavaScript.
+        Mirrors Header.tsx / Hero.tsx markup; keep the copy in sync with them.
+        Its CSS intro starts at first paint; React replaces this on mount and
+        resumes the same animation (see introElapsed() in Hero.tsx).
+      -->
+      <header class="site-header">
+        <div class="site-header__inner">
+          <a href="#inicio" class="site-header__logo" aria-label="ÉLORA Dermatologia — início">
+            <span class="wordmark wordmark--dark">
+              <span class="wordmark__name">ÉLORA</span>
+              <span class="wordmark__suffix">Dermatologia</span>
+            </span>
+          </a>
+          <nav class="site-header__nav" aria-label="Navegação principal">
+            <ul>
+              <li><a href="#clinica" class="nav-link">A clínica</a></li>
+              <li><a href="#tratamentos" class="nav-link">Tratamentos</a></li>
+              <li><a href="#abordagem" class="nav-link">A abordagem</a></li>
+              <li><a href="#contato" class="nav-link">Contato</a></li>
+            </ul>
+          </nav>
+          <div class="site-header__actions">
+            <a href="#agendar" class="btn btn--primary site-header__cta">Agendar consulta</a>
+            <span class="site-header__menu" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M4 5h16M4 12h16M4 19h16" /></svg>
+            </span>
+          </div>
+        </div>
+      </header>
+      <main>
+        <section class="hero hero-intro" data-hero-shell>
+          <div class="hero__media">
+            <picture>
+              <source media="(min-width: 1024px)" srcset="/media/hero-poster.webp" />
+              <img class="hero__video" src="/media/hero-poster-sm.webp" alt="" fetchpriority="high" style="position: absolute; inset: 0" />
+            </picture>
+            <div class="hero__media-meta"><span class="hero__media-caption">Vitória · ES</span></div>
+          </div>
+          <div class="hero__copy">
+            <p class="eyebrow hero-fade" style="--i: 0">Dermatologia contemporânea · Vitória, ES</p>
+            <h1 class="display hero__title">
+              <span class="line-mask"><span class="line-mask__inner hero-rise" style="--i: 0">Sua pele.</span></span>
+              <span class="line-mask"><span class="line-mask__inner hero-rise" style="--i: 1">Sua história.</span></span>
+              <span class="line-mask"><span class="line-mask__inner hero-rise" style="--i: 2">Seu <em>melhor cuidado.</em></span></span>
+            </h1>
+            <p class="lead hero__lead hero-fade" style="--i: 5">
+              Uma abordagem personalizada que une ciência dermatológica, tecnologia e atenção aos detalhes para cuidar da saúde da sua pele.
+            </p>
+            <div class="hero__actions hero-fade" style="--i: 6">
+              <a href="#agendar" class="btn btn--primary">Agendar consulta
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+              </a>
+              <a href="#clinica" class="text-link">Conhecer a clínica</a>
+            </div>
+          </div>
+          <a href="#clinica" class="hero__scroll hero-fade" style="--i: 10">
+            <span class="hero__scroll-line" aria-hidden="true"></span><span>Role para descobrir</span>
+          </a>
+        </section>
+      </main>
+    </div>
+    <noscript>
+      <p style="padding: 2rem var(--gutter); font-family: sans-serif">
+        Rua Aleixo Netto, 1120, Praia do Canto, Vitória, ES · +55 (27) 99999-4821. Ative o JavaScript para ver o
+        site completo. (Projeto demonstrativo, dados fictícios.)
+      </p>
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

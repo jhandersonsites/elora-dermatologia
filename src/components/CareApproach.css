@@ -1,0 +1,159 @@
+.approach {
+  padding-block: var(--section-y);
+  background: var(--ivory);
+}
+
+.approach__header {
+  display: grid;
+  gap: 1.5rem;
+  max-width: 44rem;
+}
+
+.approach__layout {
+  margin-top: clamp(3rem, 7vw, 6rem);
+}
+
+.approach__stage {
+  display: none;
+}
+
+.approach__steps {
+  position: relative;
+}
+
+.approach__list {
+  display: grid;
+  gap: 4rem;
+}
+
+.approach__rail {
+  display: none;
+}
+
+.approach__step {
+  display: grid;
+  gap: 1rem;
+}
+
+.approach__step-media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+  background: var(--cream);
+}
+
+.approach__step-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.approach__step-index {
+  font-size: var(--fs-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* ---------- Wide screens: sticky frame + scrolling steps ---------- */
+
+@media (min-width: 900px) {
+  .approach__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(3rem, 7vw, 8rem);
+    align-items: start;
+  }
+
+  .approach__stage {
+    display: block;
+    position: sticky;
+    top: calc(var(--header-h) + 4vh);
+    height: calc(100svh - var(--header-h) - 8vh);
+    max-height: 760px;
+  }
+
+  .approach__frame {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    background: var(--cream);
+  }
+
+  .approach__frame img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .approach__counter {
+    position: absolute;
+    left: 1.5rem;
+    bottom: 1.25rem;
+    padding: 0.4rem 0.8rem;
+    background: rgba(247, 244, 238, 0.92);
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--ink-soft);
+  }
+
+  .approach__counter span {
+    color: var(--ink);
+  }
+
+  .approach__steps {
+    padding-left: 2.5rem;
+  }
+
+  .approach__list {
+    gap: 0;
+  }
+
+  .approach__rail {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--line);
+  }
+
+  .approach__rail span {
+    position: absolute;
+    inset: 0;
+    background: var(--charcoal);
+    transform-origin: top;
+  }
+
+  .approach__step {
+    min-height: 72svh;
+    align-content: center;
+    /* Steps outside the reading band are dimmed; the active one is full contrast. */
+    opacity: 0.45;
+    transition: opacity 0.8s var(--ease);
+  }
+
+  .approach__step.is-active {
+    opacity: 1;
+  }
+
+  .approach__step-media {
+    display: none;
+  }
+
+  .approach__step .h3 {
+    font-size: clamp(2rem, 1.4rem + 1.6vw, 3rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) and (min-width: 900px) {
+  .approach__step {
+    opacity: 1;
+  }
+}

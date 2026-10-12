@@ -1,0 +1,70 @@
+.privacy {
+  width: min(40rem, calc(100vw - 2rem));
+  max-height: calc(100svh - 2rem);
+  padding: 0;
+  border: 0;
+  background: var(--ivory);
+  color: var(--ink);
+}
+
+.privacy::backdrop {
+  background: rgba(36, 37, 34, 0.55);
+  backdrop-filter: blur(4px);
+}
+
+.privacy[open] {
+  animation: privacy-in 0.5s var(--ease);
+}
+
+@keyframes privacy-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+.privacy__inner {
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1.5rem, 4vw, 3rem);
+}
+
+.privacy__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.privacy__close {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-right: -0.6rem;
+  border: 0;
+  background: none;
+}
+
+.privacy__badge {
+  justify-self: start;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--line-strong);
+  font-size: var(--fs-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.privacy h3 {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.privacy p {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}

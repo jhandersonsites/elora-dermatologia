@@ -1,0 +1,121 @@
+.footer {
+  background: var(--charcoal);
+  color: var(--on-dark);
+  padding-top: clamp(4.5rem, 10vw, 8rem);
+  padding-bottom: 2rem;
+  overflow: clip;
+}
+
+.footer__brand {
+  display: grid;
+  gap: 1rem;
+  padding-bottom: clamp(3rem, 7vw, 5rem);
+  border-bottom: 1px solid var(--line-dark);
+}
+
+.footer__wordmark {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(4.5rem, 21vw, 19rem);
+  line-height: 0.8;
+  letter-spacing: 0.08em;
+  margin-left: -0.04em;
+  color: var(--on-dark);
+}
+
+.footer__tagline {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+  color: var(--champagne);
+}
+
+.footer__cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  gap: 2.5rem 2rem;
+  padding-block: 3.5rem;
+  font-size: 0.95rem;
+}
+
+.footer__heading {
+  margin-bottom: 1.1rem;
+  font-size: var(--fs-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--champagne);
+}
+
+.footer__cols ul {
+  display: grid;
+  gap: 0.7rem;
+  color: var(--on-dark-soft);
+}
+
+.footer__cols a,
+.footer__link-button {
+  display: inline-block;
+  padding-block: 0.15rem;
+  color: var(--on-dark);
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+  transition: background-size 0.6s var(--ease);
+  overflow-wrap: anywhere;
+}
+
+.footer__cols a:hover,
+.footer__cols a:focus-visible,
+.footer__link-button:hover,
+.footer__link-button:focus-visible {
+  background-size: 100% 1px;
+}
+
+.footer__link-button {
+  border: 0;
+  padding-inline: 0;
+  background-color: transparent;
+  text-align: left;
+}
+
+.footer__social {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.footer__muted {
+  color: rgba(242, 238, 230, 0.6);
+  font-size: 0.85rem;
+}
+
+.footer__bottom {
+  display: grid;
+  gap: 1rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line-dark);
+}
+
+.footer__demo {
+  font-size: 0.85rem;
+  color: var(--on-dark);
+}
+
+.footer__top {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-self: start;
+  min-height: 44px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+@media (min-width: 900px) {
+  .footer__bottom {
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 2rem;
+  }
+}
