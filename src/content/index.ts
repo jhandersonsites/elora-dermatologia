@@ -3,7 +3,8 @@
  * demonstration categories — no outcome promises or clinical claims.
  * Images are stills graded from the supplied stock footage (see README).
  */
-const media = (file: string) => `/media/${file}`;
+// BASE_URL keeps paths working when the site is served from a sub-folder (GitHub Pages).
+const media = (file: string) => `${import.meta.env.BASE_URL}media/${file}`;
 
 export type Treatment = {
   id: string;
