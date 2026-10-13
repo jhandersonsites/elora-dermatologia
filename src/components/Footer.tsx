@@ -1,6 +1,6 @@
 import { ArrowUp } from 'lucide-react';
 import { APPOINTMENT_ANCHOR, navigation, site, whatsappUrl } from '../config/site';
-import { InstagramIcon } from './Icons';
+import { InstagramIcon, WhatsAppIcon } from './Icons';
 import { openPrivacyPolicy } from '../lib/privacy';
 import { ScrollReveal } from './motion/ScrollReveal';
 import './Footer.css';
@@ -16,6 +16,15 @@ export function Footer() {
             {site.brand}
           </p>
           <p className="footer__tagline">{site.tagline}</p>
+          <div className="footer__cta">
+            <a href={APPOINTMENT_ANCHOR} className="btn btn--light">
+              Agendar consulta
+            </a>
+            <a href={whatsappUrl()} className="btn btn--ghost-light" target="_blank" rel="noopener noreferrer">
+              <WhatsAppIcon size={18} />
+              Falar pelo WhatsApp
+            </a>
+          </div>
         </ScrollReveal>
 
         <div className="footer__cols">

@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from 'motion/react';
+import { useEffect, useState } from 'react';
 import { useScrolledPast } from '../hooks/useScrolledPast';
 import { whatsappUrl } from '../config/site';
 import { WhatsAppIcon } from './Icons';
@@ -7,9 +8,27 @@ import './WhatsAppButton.css';
 
 const pastHero = (viewportHeight: number) => viewportHeight * 0.7;
 
-/** Persistent WhatsApp shortcut, shown once the visitor has scrolled past the hero. */
+/** True while the footer is on screen (it has its own WhatsApp action). */
+function useFooterInView() {
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const footer = document.querySelector('footer');
+    if (!footer) return;
+    const observer = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting));
+    observer.observe(footer);
+    return () => observer.disconnect();
+  }, []);
+  return inView;
+}
+
+/**
+ * Persistent WhatsApp shortcut, shown once the visitor has scrolled past the
+ * hero and hidden over the footer, so it never covers the footer links.
+ */
 export function WhatsAppButton() {
-  const visible = useScrolledPast(pastHero);
+  const pastHeroSection = useScrolledPast(pastHero);
+  const footerInView = useFooterInView();
+  const visible = pastHeroSection && !footerInView;
 
   return (
     <AnimatePresence>

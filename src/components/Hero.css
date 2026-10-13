@@ -9,8 +9,8 @@
 
 .hero__media {
   position: relative;
-  height: min(58svh, 560px);
-  min-height: 300px;
+  /* Shorter on phones so the headline and CTA arrive sooner. */
+  height: clamp(240px, 46svh, 520px);
   overflow: hidden;
   background: var(--cream);
 }
@@ -71,16 +71,44 @@
   position: relative;
   z-index: 1;
   display: grid;
-  gap: 1.5rem;
-  padding: 2.25rem var(--gutter) 3.5rem;
+  gap: 1.25rem;
+  padding: 1.75rem var(--gutter) 3rem;
+  /* The headline is sized from this column so it always sets in 3 lines. */
+  container-type: inline-size;
 }
 
+/* "Seu melhor cuidado." measures ~6.95em, so 13.9cqi fills the column exactly
+   without breaking into a 4th line at any width. */
 .hero__title {
-  font-size: clamp(2.85rem, 12.5vw, 4.4rem);
+  font-size: clamp(2.3rem, 13.9cqi, 4.4rem);
+  text-wrap: balance;
+}
+
+.hero .eyebrow {
+  text-wrap: balance;
 }
 
 .hero__lead {
   max-width: 30rem;
+}
+
+/* One clean eyebrow line where the column is narrow (phones, small laptops):
+   drop the rule, tighten the tracking. */
+@media (max-width: 479px), (min-width: 1024px) and (max-width: 1279px) {
+  .hero .eyebrow {
+    font-size: 0.66rem;
+    letter-spacing: 0.16em;
+  }
+
+  .hero .eyebrow::before {
+    display: none;
+  }
+}
+
+@media (max-width: 479px) {
+  .hero__lead {
+    font-size: 1.02rem;
+  }
 }
 
 .hero__actions {
@@ -115,8 +143,13 @@
 
 @media (min-width: 1024px) {
   .hero {
+    /* Copy column = page margin + a readable measure; the film takes the rest.
+       Keeps text/image balance from laptops to 1920px+ screens. */
+    --hero-offset: max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter)));
     display: grid;
-    grid-template-columns: minmax(0, 5.3fr) minmax(0, 6.7fr);
+    grid-template-columns:
+      calc(var(--hero-offset) + clamp(26rem, 34vw, 36rem) + clamp(2rem, 4vw, 5rem))
+      minmax(0, 1fr);
     min-height: max(100svh, 700px);
   }
 
@@ -136,16 +169,21 @@
     grid-row: 1;
     align-content: center;
     gap: 2rem;
-    padding: 4rem clamp(2rem, 4vw, 5rem) 8rem max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter)));
+    padding: 4rem clamp(2rem, 4vw, 5rem) 8rem var(--hero-offset);
   }
 
   .hero__title {
-    font-size: clamp(3.6rem, 5.4vw, 6.4rem);
+    font-size: min(6.4rem, 13.9cqi);
+  }
+
+  .hero__actions {
+    flex-wrap: nowrap;
+    white-space: nowrap;
   }
 
   .hero__scroll {
     position: absolute;
-    left: max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter)));
+    left: var(--hero-offset);
     bottom: 2.25rem;
     display: inline-flex;
     align-items: center;

@@ -110,11 +110,28 @@
   gap: 0.5rem;
 }
 
+/* Always visible: compact on phones ("Agendar"), full label from 480px. */
 .site-header__cta {
-  display: none;
   min-height: 44px;
-  padding: 0.75rem 1.35rem;
-  font-size: 0.7rem;
+  padding: 0.7rem 1rem;
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+}
+
+.site-header__cta-more {
+  display: none;
+}
+
+@media (min-width: 480px) {
+  .site-header__cta {
+    padding: 0.75rem 1.35rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+  }
+
+  .site-header__cta-more {
+    display: inline;
+  }
 }
 
 .site-header__menu {
@@ -128,8 +145,7 @@
 }
 
 @media (min-width: 1024px) {
-  .site-header__nav,
-  .site-header__cta {
+  .site-header__nav {
     display: flex;
   }
 

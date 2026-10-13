@@ -36,8 +36,10 @@ export function Header() {
         </nav>
 
         <div className="site-header__actions">
-          <a href={APPOINTMENT_ANCHOR} className="btn btn--primary site-header__cta">
-            Agendar consulta
+          <a href={APPOINTMENT_ANCHOR} className="btn btn--primary site-header__cta" aria-label="Agendar consulta">
+            <span>
+              Agendar<span className="site-header__cta-more"> consulta</span>
+            </span>
           </a>
           <button
             ref={toggleRef}

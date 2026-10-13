@@ -74,7 +74,6 @@ export function Hero() {
               type="button"
               className="hero__toggle"
               onClick={() => videoRef.current?.toggle()}
-              aria-pressed={!playing}
             >
               {playing ? <Pause size={14} aria-hidden="true" /> : <Play size={14} aria-hidden="true" />}
               <span className="visually-hidden">{playing ? 'Pausar vídeo' : 'Reproduzir vídeo'}</span>

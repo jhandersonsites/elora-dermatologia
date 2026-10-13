@@ -401,6 +401,13 @@ section[id],
   text-transform: uppercase;
 }
 
+/* Invisible 44px-tall hit area; the visible link keeps its tight underline. */
+.text-link::before {
+  content: '';
+  position: absolute;
+  inset: -5px 0;
+}
+
 .text-link::after {
   content: '';
   position: absolute;

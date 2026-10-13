@@ -66,6 +66,9 @@ export function ContactSection() {
                 </dd>
               </div>
             </dl>
+            <p className="caption contact__demo">
+              Dados de contato fictícios — projeto demonstrativo, sem atendimento real.
+            </p>
           </ScrollReveal>
         </div>
 
